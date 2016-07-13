@@ -4,8 +4,8 @@
 #include <tchar.h>
 #include <Windows.h>
 #include <dwrite.h>
-#pragma comment(lib,"d2d1.lib") //fix it
-#pragma comment(lib,"dwrite.lib")
+//#pragma comment(lib,"d2d1.lib") //fix it
+//#pragma comment(lib,"dwrite.lib")
 
 namespace Application
 {
