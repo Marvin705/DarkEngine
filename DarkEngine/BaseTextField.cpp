@@ -28,7 +28,6 @@ namespace Application
     {
       if (this->isActive)
       {
-        int i = 9;
         if (Input::GetInstance()->GetKeyDown(VK_SHIFT))
         {
           //UPERCASE
@@ -330,7 +329,7 @@ namespace Application
     }
     void BaseTextField::OnClick()
     {
-      this->ClearText();
+      
     }
     Transform2D * BaseTextField::GetTransform()
     {
@@ -370,6 +369,16 @@ namespace Application
         delete[]this->text;
         this->text = temp;
       }
+    }
+
+    void BaseTextField::SetSelected(bool state)
+    {
+      this->isSelected = state;
+    }
+
+    bool BaseTextField::IsSelected()
+    {
+      return  this->isSelected;
     }
     
   }

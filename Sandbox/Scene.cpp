@@ -146,11 +146,11 @@ namespace Application
         if ((x >= trans->position.x) && (x <= trans->position.x + trans->scale.x) && (y >= trans->position.y) && (y <= trans->position.y + trans->scale.y))
         {
           Uilist->GetListObject(i)->OnClick();
-          Uilist->GetListObject(i)->SetActive(true);
+          Uilist->GetListObject(i)->SetSelected(true);
         }
         else
         {
-          Uilist->GetListObject(i)->SetActive(false);
+          Uilist->GetListObject(i)->SetSelected(false);
         }
         
 

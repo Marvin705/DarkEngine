@@ -29,8 +29,14 @@ namespace Application
       Transform2D* transform;
       WCHAR* text;
       bool isActive;
-
+      bool isSelected;
      
+
+      // Inherited via IUIElement
+      virtual void SetSelected(bool state) override;
+
+      virtual bool IsSelected() override;
+
     };
 
   }

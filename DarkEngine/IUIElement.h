@@ -12,6 +12,8 @@ namespace Application
       virtual void Update()=0;
       virtual void Draw(IGraphics2D* graphics)=0;
       virtual void OnClick()=0;
+      virtual void SetSelected(bool state )= 0;
+      virtual bool IsSelected() = 0;
       virtual void SetActive(bool state)= 0;
       virtual bool IsActive() = 0;
       virtual Transform2D* GetTransform() = 0; 

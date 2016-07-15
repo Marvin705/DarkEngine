@@ -49,5 +49,13 @@ namespace Application
     {
       return isActive;
     }
+    void BaseButton::SetSelected(bool state)
+    {
+      this->isSelected = state;
+    }
+    bool BaseButton::IsSelected()
+    {
+      return  this->isSelected;
+    }
   }
 }
