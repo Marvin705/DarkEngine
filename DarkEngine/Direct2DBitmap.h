@@ -1,4 +1,4 @@
-#pragma once
+#pragma once //Test
 #include "Direct2D.h"
 //#include <d2d1.h>
 namespace Application {

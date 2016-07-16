@@ -1,4 +1,4 @@
-#include "Direct2DBitmap.h"
+#include "Direct2DBitmap.h"//test
 
 namespace Application {
 
