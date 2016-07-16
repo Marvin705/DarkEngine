@@ -26,19 +26,25 @@ namespace Application
 
     Direct2D::~Direct2D()
     {
-      brush->Release();
-      target->Release();
-      factory->Release();
-      textform->Release();
-      writefactory->Release();
+      //brush->Release();
+      //target->Release();
+      //factory->Release();
+      //textform->Release();
+      //writefactory->Release();
     }
 
 
     void Direct2D::Initialize(HWND hwnd)
     {
+
+
+
+      D2D1_FACTORY_OPTIONS options;
+      options.debugLevel = D2D1_DEBUG_LEVEL_WARNING;
+
       HRESULT hr;
       this->factory = NULL;
-      hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
+      hr = D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED,options ,&factory);
 
       Failed(hr);
 
@@ -84,8 +90,7 @@ namespace Application
         &textform
         );
       Failed(hr);
-
-
+      
     }
     void Direct2D::BeginDraw()
     {
@@ -135,11 +140,80 @@ namespace Application
           y + height),
           brush);
       }
-
+     
     }
     void Direct2D::Clear(int color)
     {
       target->Clear(D2D1::ColorF(color));
+    }
+
+    ID2D1Bitmap * Direct2D::Decode(PCWSTR path)
+    {
+      ID2D1Bitmap* bitmap = NULL;
+      BitmapDecoder* decode = new BitmapDecoder();
+
+      HRESULT hr = decode->LoadBitmapFromFile(target, path, &bitmap);
+      Failed(hr);
+
+
+      delete decode;
+      return bitmap;
+    }
+
+
+
+    void Direct2D::DrawBitmap(PCWSTR path)
+    {
+
+      ID2D1Bitmap* bitmap = NULL;
+      BitmapDecoder* decode= new BitmapDecoder();
+
+      HRESULT hr = decode->LoadBitmapFromFile(target, path, &bitmap);
+      Failed(hr);
+
+      if (bitmap != nullptr)
+      {
+        target->DrawBitmap(
+          bitmap,                                                        //[in]        ID2D1Bitmap                    *bitmap,
+          D2D1::RectF(0.0f, 0.0f, 100.0f, 100.0f),                           //[ref] const D2D1_RECT_F                    &destinationRectangle,
+          1.0f,                                                         //FLOAT                          opacity,
+          D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,             //D2D1_BITMAP_INTERPOLATION_MODE interpolationMode,
+          D2D1::RectF(0.0f, 0.0f, 500.0f, 500.0f)                       //[ref] const D2D1_RECT_F                    &sourceRectangle
+        );
+        bitmap->Release();
+      }
+    
+      
+      delete decode;
+
+
+    }
+
+
+
+    void Direct2D::Shutdown()
+    {
+      brush->Release();
+      target->Release();
+      factory->Release();
+      textform->Release();
+      writefactory->Release();
+    }
+    void Direct2D::DrawBitmap(void * bitmap)
+    {
+      ID2D1Bitmap* bitmapa = reinterpret_cast<ID2D1Bitmap*> (bitmap);
+      if (bitmap != nullptr)
+      {
+        target->DrawBitmap(
+          bitmapa,                                                        //[in]        ID2D1Bitmap                    *bitmap,
+          D2D1::RectF(0.0f, 0.0f, 100.0f, 100.0f),                           //[ref] const D2D1_RECT_F                    &destinationRectangle,
+          1.0f,                                                         //FLOAT                          opacity,
+          D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,             //D2D1_BITMAP_INTERPOLATION_MODE interpolationMode,
+          D2D1::RectF(0.0f, 0.0f, 500.0f, 500.0f)                       //[ref] const D2D1_RECT_F                    &sourceRectangle
+        );
+      }
+      
+
     }
   }
 }

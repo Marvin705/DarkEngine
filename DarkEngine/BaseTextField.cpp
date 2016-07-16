@@ -14,7 +14,8 @@ namespace Application
       this->transform->scale.x = 100;
       this->transform->scale.y = 50;
       this->text = new WCHAR{};
-      this->isActive = false;
+      this->isActive = true;
+      this->isSelected = false;
     }
 
 
@@ -26,7 +27,7 @@ namespace Application
     }
     void BaseTextField::Update()
     {
-      if (this->isActive)
+      if (this->isSelected)
       {
         if (Input::GetInstance()->GetKeyDown(VK_SHIFT))
         {
@@ -313,7 +314,7 @@ namespace Application
     }
     void BaseTextField::Draw(IGraphics2D * graphics)
     {
-      if (this->isActive)
+      if (this->isSelected)
       {
         graphics->DrawRectangle(this->transform->position.x, this->transform->position.y, this->transform->scale.x, this->transform->scale.y, 0x000000, 1);
         graphics->DrawRectangle(this->transform->position.x, this->transform->position.y, this->transform->scale.x, this->transform->scale.y, 0x0000FF, 0);

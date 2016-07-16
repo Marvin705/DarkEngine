@@ -121,6 +121,9 @@ namespace Application
     void Scene::Draw(IGraphics2D* graphics)
     {
       graphics->DrawRectangle(50, 50, 200, 200, 0xFF0000, 1);
+     
+
+
       //draw all GameObjects
       for (int i = 0; i < list->GetItemCount(); i++)
       {

@@ -10,6 +10,7 @@ namespace Application {
 
     Application::~Application()
     {
+      delete graphics;
     }
     LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
@@ -65,6 +66,9 @@ namespace Application {
       //test
       graphics = new Direct2D();
       graphics->Initialize(winhandle);
+      bmp1 = GraphicRessourceManager::GetInstance()->SetRessource(L"D:\\Ghost1.bmp", graphics);
+
+
       //test
 
       printf("App Initialize sucsess \n");
@@ -102,17 +106,27 @@ namespace Application {
         //Draw
         graphics->BeginDraw();
         scene->Draw(graphics);
+       /* if (!quit)
+        {
+        
+          graphics->DrawBitmap(L"D:\\Ghost1.bmp");
+        }*/
+        
         graphics->DrawString(0, 0, L"Test0",0xFF0000);
         graphics->DrawString(223, 5, L"Test1", 0xFF00FF);
         graphics->DrawString(22, 123, L"Test2", 0xFFFF00);
         graphics->DrawString(213, 51, L"Test3", 0x00FF00);
         graphics->DrawString(224, 111, L"Test4", 0x00FFFF);
         graphics->DrawString(234, 145, L"Test5", 0xFFFFFF);
+        graphics->DrawBitmap(bmp1);
         graphics->EndDraw();
+        
         //Test
 
         //
       }
+     
+      graphics->Shutdown();
       printf("App Shutdown! sucsess \n");
     }
   }

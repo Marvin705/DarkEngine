@@ -6,7 +6,7 @@
 #include <iostream>
 #include "IGraphics2D.h"
 #include "Direct2D.h"
-
+#include "GraphicRessourceManager.h"
 #include "Input.h"
 
 namespace Application {
@@ -24,6 +24,9 @@ namespace Application {
     private:
       HWND winhandle;
       IGraphics2D* graphics;
+      void* bmp1;
+
+
       //Scene scene;
     };
 

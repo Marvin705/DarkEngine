@@ -1,5 +1,6 @@
 #pragma once
 #include "IGraphics2D.h"
+#include "BitmapDecoder.h"
 #include <d2d1.h>
 #include <tchar.h>
 #include <Windows.h>
@@ -26,7 +27,7 @@ namespace Application
       virtual void DrawString(int x, int y, WCHAR* text, int color) override;
       virtual void DrawRectangle(int x, int y,int width, int height, int color, int style) override;
       virtual void Clear(int color) override;
-
+      ID2D1Bitmap* Decode(PCWSTR path);
     private:
 
 
@@ -35,6 +36,15 @@ namespace Application
       ID2D1SolidColorBrush* brush;
       IDWriteTextFormat* textform;
       IDWriteFactory* writefactory;
+
+      // Inherited via IGraphics2D
+      virtual void DrawBitmap(PCWSTR path) override;
+
+      // Inherited via IGraphics2D
+      virtual void Shutdown() override;
+
+      // Inherited via IGraphics2D
+      virtual void DrawBitmap(void * bitmap) override;
     };
 
   }

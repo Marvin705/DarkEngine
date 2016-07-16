@@ -14,6 +14,9 @@ namespace Application
       virtual void DrawPixel(int x, int y, int color) = 0;
       virtual void DrawString(int x, int y, WCHAR* text, int color)= 0;
       virtual void DrawRectangle(int x, int y,int width, int height, int color, int style) = 0;
+      virtual void DrawBitmap(PCWSTR path) = 0;
+      virtual void Shutdown() = 0;
+      virtual void DrawBitmap(void* bitmap) = 0;
     };
   }
 }
