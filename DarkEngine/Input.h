@@ -20,7 +20,6 @@ namespace Application
       bool GetKeyUpC(int keyCode); //C =ONCE only on chage state
       void Step();
       void UpdateKey(int keyCode,bool state);
-
       bool* Keybord;
       bool* Keybordlasttick;
     };

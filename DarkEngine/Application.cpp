@@ -6,11 +6,13 @@ namespace Application {
   {
     Application::Application()
     {
+      CoInitialize(NULL); //IMPORTANT!
     }
 
     Application::~Application()
     {
       delete graphics;
+      CoUninitialize();
     }
     LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
@@ -66,16 +68,34 @@ namespace Application {
       //test
       graphics = new Direct2D();
       graphics->Initialize(winhandle);
+     
+      //graphics->BeginDraw();
+      //graphics->DrawBitmap(bmp1->DataAcess());
+      //graphics->EndDraw();
+      //bmp1->Freedata();
       bmp1 = GraphicRessourceManager::GetInstance()->SetRessource(L"D:\\Ghost1.bmp", graphics);
-
-
       //test
 
       printf("App Initialize sucsess \n");
     }
     void Application::Run(IScene* scene)
     {
+      ///
+    /*  Direct2DBitmap* bmp1 = GraphicRessourceManager::GetInstance()->SetRessource(L"D:\\Ghost1.bmp", graphics);
+      graphics->BeginDraw();
+      graphics->DrawBitmap(bmp1->DataAcess());
+      graphics->DrawBitmap(bmp1->DataAcess());
+      graphics->EndDraw();
+      graphics->BeginDraw();
+      graphics->DrawBitmap(bmp1->DataAcess());
+      graphics->DrawBitmap(bmp1->DataAcess());
+      graphics->EndDraw();*/
+     
+      ///
       scene->Initialize();
+     
+
+
       printf("App Run sucsess \n");
       MSG message = {};
       bool quit = false;
@@ -83,7 +103,7 @@ namespace Application {
       {
         //printf("App is running ... \n");
         PeekMessage(&message, NULL, 0, 0, PM_REMOVE);
-        if (message.message == WM_QUIT)
+        if (message.message == WM_QUIT || message.message == WM_DESTROY)
         {
           quit = true;
         }
@@ -95,38 +115,53 @@ namespace Application {
         TranslateMessage(&message);
         DispatchMessage(&message);
         //Input
-        Input::GetInstance()->Step();
-        for (int i = 0; i < 256; i++)
+        if (!quit)
         {
-          Input::GetInstance()->UpdateKey(i, GetAsyncKeyState(i) !=0 );
+          Input::GetInstance()->Step();
+          for (int i = 0; i < 256; i++)
+          {
+            Input::GetInstance()->UpdateKey(i, GetAsyncKeyState(i) != 0);
+          }
+          //update
+          scene->Update();   //scene->Update(Input);
+
+          //Draw
+          graphics->BeginDraw();
+          scene->Draw(graphics);
+          /* if (!quit)
+           {
+
+             graphics->DrawBitmap(L"D:\\Ghost1.bmp");
+           }*/
+
+          graphics->DrawString(0, 0, L"Test0", 0xFF0000);
+          graphics->DrawString(223, 5, L"Test1", 0xFF00FF);
+          graphics->DrawString(22, 123, L"Test2", 0xFFFF00);
+          graphics->DrawString(213, 51, L"Test3", 0x00FF00);
+          graphics->DrawString(224, 111, L"Test4", 0x00FFFF);
+          graphics->DrawString(234, 145, L"Test5", 0xFFFFFF);
+          graphics->DrawBitmap(bmp1->DataAcess());
+        //  Direct2DBitmap* bmp1 = GraphicRessourceManager::GetInstance()->SetRessource(L"D:\\Ghost1.bmp", graphics);
+        //  graphics->DrawBitmap(bmp1->DataAcess());
+        //  delete bmp1;
+
+          graphics->EndDraw();
         }
-        //update
-        scene->Update();   //scene->Update(Input);
-
-        //Draw
-        graphics->BeginDraw();
-        scene->Draw(graphics);
-       /* if (!quit)
+        else
         {
-        
-          graphics->DrawBitmap(L"D:\\Ghost1.bmp");
-        }*/
-        
-        graphics->DrawString(0, 0, L"Test0",0xFF0000);
-        graphics->DrawString(223, 5, L"Test1", 0xFF00FF);
-        graphics->DrawString(22, 123, L"Test2", 0xFFFF00);
-        graphics->DrawString(213, 51, L"Test3", 0x00FF00);
-        graphics->DrawString(224, 111, L"Test4", 0x00FFFF);
-        graphics->DrawString(234, 145, L"Test5", 0xFFFFFF);
-        graphics->DrawBitmap(bmp1);
-        graphics->EndDraw();
-        
+          bmp1->Freedata();
+          //delete bmp1;
+          scene->Shutdown();
+          graphics->Shutdown();
+         
+        }
         //Test
-
+        
         //
       }
-     
-      graphics->Shutdown();
+      //delete bmp1;
+      
+      
       printf("App Shutdown! sucsess \n");
     }
   }

@@ -21,6 +21,8 @@ namespace Application
 
     BaseTextField::~BaseTextField()
     {
+      delete this->transform;
+      delete[] this->text;
     }
     void BaseTextField::Initialize()
     {
@@ -380,6 +382,11 @@ namespace Application
     bool BaseTextField::IsSelected()
     {
       return  this->isSelected;
+    }
+
+    void BaseTextField::Dispose()
+    {
+      delete this;
     }
     
   }

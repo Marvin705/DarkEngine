@@ -20,6 +20,7 @@ namespace Application
 
     BaseButton::~BaseButton()
     {
+      delete this->transform;
     }
     void BaseButton::Initialize()
     {
@@ -56,6 +57,10 @@ namespace Application
     bool BaseButton::IsSelected()
     {
       return  this->isSelected;
+    }
+    void BaseButton::Dispose()
+    {
+      delete this;
     }
   }
 }

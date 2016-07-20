@@ -24,6 +24,9 @@ namespace Application
       
       Transform* transform;
       List* Child;
+
+      // Inherited via IGameObject
+      virtual void Dispose() override;
     };
 
   }

@@ -145,10 +145,14 @@
     <ClInclude Include="BaseButton.h" />
     <ClInclude Include="BaseTextField.h" />
     <ClInclude Include="BitmapDecoder.h" />
+    <ClInclude Include="ByteBuffer.h" />
     <ClInclude Include="Datatypes.h" />
+    <ClInclude Include="DEImage.h" />
     <ClInclude Include="Direct2D.h" />
     <ClInclude Include="Direct2DBitmap.h" />
+    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="GraphicRessourceManager.h" />
+    <ClInclude Include="IData.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="IGraphics2D.h" />
     <ClInclude Include="Input.h" />
@@ -168,8 +172,11 @@
     <ClCompile Include="BaseButton.cpp" />
     <ClCompile Include="BaseTextField.cpp" />
     <ClCompile Include="BitmapDecoder.cpp" />
+    <ClCompile Include="ByteBuffer.cpp" />
+    <ClCompile Include="DEImage.cpp" />
     <ClCompile Include="Direct2D.cpp" />
     <ClCompile Include="Direct2DBitmap.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="GraphicRessourceManager.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="List.cpp" />

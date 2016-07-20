@@ -36,6 +36,7 @@ namespace Application
       ID2D1SolidColorBrush* brush;
       IDWriteTextFormat* textform;
       IDWriteFactory* writefactory;
+      BitmapDecoder* decode;
 
       // Inherited via IGraphics2D
       virtual void DrawBitmap(PCWSTR path) override;
@@ -44,7 +45,10 @@ namespace Application
       virtual void Shutdown() override;
 
       // Inherited via IGraphics2D
-      virtual void DrawBitmap(void * bitmap) override;
+      virtual void DrawBitmap(ID2D1Bitmap * bitmap) override;
+
+
+
     };
 
   }

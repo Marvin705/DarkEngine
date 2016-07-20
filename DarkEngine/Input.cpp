@@ -16,6 +16,8 @@ namespace Application
 
     Input::~Input()
     {
+      delete[] Keybord;
+      delete[] Keybordlasttick;
     }
     bool Input::GetKeyDown(int keycode)
     {

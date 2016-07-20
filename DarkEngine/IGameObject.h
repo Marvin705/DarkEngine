@@ -15,6 +15,7 @@ namespace Application
       virtual void AddChild(IGameObject* child) = 0;
       virtual IGameObject* GetChild(int index) = 0;
       virtual Transform* GetTransform() = 0;
+      virtual void Dispose()= 0;
     private:
 
     };

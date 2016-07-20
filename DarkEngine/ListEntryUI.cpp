@@ -13,7 +13,7 @@ namespace Application
 
     ListEntryUI::~ListEntryUI()
     {
-
+      this->Object->Dispose();
     }
 
 

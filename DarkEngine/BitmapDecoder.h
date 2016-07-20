@@ -12,7 +12,6 @@ namespace Application
     public:
       BitmapDecoder();
       ~BitmapDecoder();
-
       HRESULT LoadBitmapFromFile(
         ID2D1RenderTarget *pRenderTarget,
         PCWSTR uri,

@@ -19,6 +19,7 @@ namespace Application
     SceneObject::~SceneObject()
     {
       delete Child;
+      delete transform;
     }
     void SceneObject::Initialize()
     {
@@ -61,6 +62,10 @@ namespace Application
     Transform* SceneObject::GetTransform()
     {
       return this->transform;
+    }
+    void SceneObject::Dispose()
+    {
+      delete this;
     }
     IGameObject * SceneObject::GetChild(int index)
     {     

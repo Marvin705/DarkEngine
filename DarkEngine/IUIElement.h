@@ -17,6 +17,7 @@ namespace Application
       virtual void SetActive(bool state)= 0;
       virtual bool IsActive() = 0;
       virtual Transform2D* GetTransform() = 0; 
+      virtual void Dispose() = 0;
     };
 
   }

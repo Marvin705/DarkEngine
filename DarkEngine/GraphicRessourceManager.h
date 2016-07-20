@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "Direct2D.h"
 #include "IGraphics2D.h"
+#include "Direct2DBitmap.h"
 namespace Application
 {
 
@@ -18,7 +19,7 @@ namespace Application
       }
       GraphicRessourceManager();
       ~GraphicRessourceManager();
-      void* SetRessource(PCWSTR path, IGraphics2D* graphics);
+      Direct2DBitmap* SetRessource(PCWSTR path, IGraphics2D* graphics);
     private:
       int count = 0;
       

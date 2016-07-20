@@ -7,11 +7,16 @@ namespace Application
     List::List()
     {
       this->first = nullptr;
+      this->last = nullptr;
       this->itemcount = 0;
     }
 
     List::~List()
     {
+      while (itemcount >0)
+      {
+        this->Remove(0);
+      }
     }
     ListEntry* List::GetItem(de_int32 index)
     {
@@ -98,14 +103,13 @@ namespace Application
       if (index == nullptr)
       {
         this->first = temp;
+        this->last = first;
       }
       else
       {
-        while (index->next != nullptr)
-        {
-          index = index->next;
-        }
-        index->next = temp;
+        
+        this->last->next = temp;
+        this->last = temp;
       }
       itemcount++;
     }
@@ -121,10 +125,19 @@ namespace Application
       {
         if (index == 0)
         {
-          ListEntry* temp = this->first;
-          this->first = this->first->next;
-          temp->next = nullptr;
-          delete temp;
+          if (this->first->next != nullptr)
+          {
+            ListEntry* temp = this->first;
+            this->first = this->first->next;
+            temp->next = nullptr;
+            delete temp;
+          }
+          else
+          {
+            delete first;
+            this->first = nullptr;
+            this->last = nullptr;
+          }
         }
         else
         {
@@ -133,6 +146,10 @@ namespace Application
           for (int i = 0; i < index - 1; i++)
           {
             tempa = tempa->next;
+          }
+          if (index - 1 == this->itemcount)
+          {
+            this->last = tempa;
           }
           ListEntry* tempb = tempa->next;
           tempa->next = tempb->next;

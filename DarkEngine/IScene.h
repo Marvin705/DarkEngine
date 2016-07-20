@@ -14,6 +14,8 @@ namespace Application
       virtual void  Draw(IGraphics2D* graphics)=0;
 
       virtual void LMouse(int x, int y) = 0;
+
+      virtual void Shutdown() = 0;
     };
 
   }

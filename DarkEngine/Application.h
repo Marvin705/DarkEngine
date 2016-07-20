@@ -8,6 +8,7 @@
 #include "Direct2D.h"
 #include "GraphicRessourceManager.h"
 #include "Input.h"
+#include "Direct2DBitmap.h"
 
 namespace Application {
 
@@ -24,8 +25,7 @@ namespace Application {
     private:
       HWND winhandle;
       IGraphics2D* graphics;
-      void* bmp1;
-
+      Direct2DBitmap* bmp1;
 
       //Scene scene;
     };

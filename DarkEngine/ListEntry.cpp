@@ -13,7 +13,7 @@ namespace Application
 
     ListEntry::~ListEntry()
     {
-      
+      this->Object->Dispose();
     }
 
 

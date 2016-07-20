@@ -32,6 +32,9 @@ namespace Application
       // Inherited via IUIElement
       virtual void SetSelected(bool state) override;
       virtual bool IsSelected() override;
+
+      // Inherited via IUIElement
+      virtual void Dispose() override;
     };
 
   }

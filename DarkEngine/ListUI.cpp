@@ -7,11 +7,16 @@ namespace Application
     ListUI::ListUI()
     {
       this->first = nullptr;
+      this->last = nullptr;
       this->itemcount = 0;
     }
 
     ListUI::~ListUI()
     {
+      while (itemcount >0)
+      {
+        this->Remove(0);
+      }
     }
     ListEntryUI* ListUI::GetItem(de_int32 index)
     {
@@ -61,14 +66,12 @@ namespace Application
       if (index == nullptr)
       {
         this->first = temp;
+        this->last = first;
       }
       else
       {
-        while (index->next != nullptr)
-        {
-          index = index->next;
-        }
-        index->next = temp;
+        this->last->next = temp;
+        this->last = temp;
       }
       itemcount++;
     }
@@ -84,10 +87,19 @@ namespace Application
       {
         if (index == 0)
         {
-          ListEntryUI* temp = this->first;
-          this->first = this->first->next;
-          temp->next = nullptr;
-          delete temp;
+          if (this->first->next != nullptr)
+          {
+            ListEntryUI* temp = this->first;
+            this->first = this->first->next;
+            temp->next = nullptr;
+            delete temp;
+          }
+          else
+          {
+            delete first;
+            this->first = nullptr;
+            this->last = nullptr;
+          }
         }
         else
         {
@@ -96,6 +108,10 @@ namespace Application
           for (int i = 0; i < index - 1; i++)
           {
             tempa = tempa->next;
+          }
+          if (index - 1 == this->itemcount)
+          {
+            this->last = tempa;
           }
           ListEntryUI* tempb = tempa->next;
           tempa->next = tempb->next;

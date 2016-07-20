@@ -12,14 +12,23 @@ namespace Application {
 
     Direct2DBitmap::~Direct2DBitmap()
     {
+      if(this->data != nullptr)
+      {
+      
+      }
+      
     }
     void Direct2DBitmap::Freedata()
     {
       this->data->Release();
+      this->data = nullptr;
+      delete this;
+      //this->data->Release();
     }
-    void Direct2DBitmap::SetData(PCWSTR path, IGraphics2D * graphics)
+    void Direct2DBitmap::SetData(PCWSTR path, Direct2D* graphics)
     {
-      this->data = (reinterpret_cast <Direct2D*> (graphics))->Decode(path);
+      this->data = graphics->Decode(path);
+      
     }
     ID2D1Bitmap * Direct2DBitmap::DataAcess()
     {

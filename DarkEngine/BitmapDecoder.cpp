@@ -10,16 +10,16 @@ namespace Application
     {
     }
 
-
+    
     BitmapDecoder::~BitmapDecoder()
     {
     }
+
     //@https://msdn.microsoft.com/de-de/library/windows/desktop/dd756686(v=vs.85).aspx
     HRESULT BitmapDecoder::LoadBitmapFromFile(ID2D1RenderTarget * pRenderTarget, PCWSTR uri, ID2D1Bitmap ** ppBitmap)
     {
 
       IWICImagingFactory* pFactory;
-
 
 
       HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory,
@@ -31,9 +31,9 @@ namespace Application
 
 
 
-      IWICStream *pStream = NULL; //?
+      //IWICStream *pStream = NULL; //?
 
-      IWICBitmapScaler *pScaler = NULL; //?
+      //IWICBitmapScaler *pScaler = NULL; //?
 
       IWICBitmapDecoder *pDecoder = NULL;
       if (SUCCEEDED(hr))

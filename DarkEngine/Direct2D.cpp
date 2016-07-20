@@ -26,17 +26,16 @@ namespace Application
 
     Direct2D::~Direct2D()
     {
-      //brush->Release();
-      //target->Release();
-      //factory->Release();
-      //textform->Release();
-      //writefactory->Release();
+   //  brush->Release();
+   //  target->Release();
+   //  factory->Release();
+   //  textform->Release();
+   //  writefactory->Release();
     }
 
 
     void Direct2D::Initialize(HWND hwnd)
     {
-
 
 
       D2D1_FACTORY_OPTIONS options;
@@ -150,13 +149,12 @@ namespace Application
     ID2D1Bitmap * Direct2D::Decode(PCWSTR path)
     {
       ID2D1Bitmap* bitmap = NULL;
-      BitmapDecoder* decode = new BitmapDecoder();
+     
 
       HRESULT hr = decode->LoadBitmapFromFile(target, path, &bitmap);
       Failed(hr);
 
 
-      delete decode;
       return bitmap;
     }
 
@@ -166,7 +164,7 @@ namespace Application
     {
 
       ID2D1Bitmap* bitmap = NULL;
-      BitmapDecoder* decode= new BitmapDecoder();
+      
 
       HRESULT hr = decode->LoadBitmapFromFile(target, path, &bitmap);
       Failed(hr);
@@ -184,7 +182,7 @@ namespace Application
       }
     
       
-      delete decode;
+      
 
 
     }
@@ -193,19 +191,20 @@ namespace Application
 
     void Direct2D::Shutdown()
     {
-      brush->Release();
-      target->Release();
-      factory->Release();
-      textform->Release();
-      writefactory->Release();
+    brush->Release();
+    target->Release();
+    factory->Release();
+    textform->Release();
+    writefactory->Release();
+    delete decode;
     }
-    void Direct2D::DrawBitmap(void * bitmap)
+    void Direct2D::DrawBitmap(ID2D1Bitmap * bitmap)
     {
-      ID2D1Bitmap* bitmapa = reinterpret_cast<ID2D1Bitmap*> (bitmap);
+      
       if (bitmap != nullptr)
       {
         target->DrawBitmap(
-          bitmapa,                                                        //[in]        ID2D1Bitmap                    *bitmap,
+          bitmap,                                                        //[in]        ID2D1Bitmap                    *bitmap,
           D2D1::RectF(0.0f, 0.0f, 100.0f, 100.0f),                           //[ref] const D2D1_RECT_F                    &destinationRectangle,
           1.0f,                                                         //FLOAT                          opacity,
           D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,             //D2D1_BITMAP_INTERPOLATION_MODE interpolationMode,

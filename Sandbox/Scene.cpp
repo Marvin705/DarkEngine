@@ -57,7 +57,7 @@ namespace Application
 
       list->Add((obj1));
       list->Add(obj2);
-      list->Add(new SceneObject());
+      list->Add(obj3);
       list->Add(obj4);
       list->Add(obj5);
 
@@ -98,7 +98,7 @@ namespace Application
       printf("%d \n", vec1.Dot(vec2));
 
 
-
+      
 
       //draw
       
@@ -121,7 +121,10 @@ namespace Application
     void Scene::Draw(IGraphics2D* graphics)
     {
       graphics->DrawRectangle(50, 50, 200, 200, 0xFF0000, 1);
-     
+
+
+
+      //bmp1->Freedata();
 
 
       //draw all GameObjects
@@ -158,6 +161,11 @@ namespace Application
         
 
       }
+    }
+    void Scene::Shutdown()
+    {
+      delete this->list;
+      delete this->Uilist;
     }
   }
 }

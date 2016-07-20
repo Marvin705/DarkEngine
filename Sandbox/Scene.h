@@ -9,6 +9,8 @@
 #include "IGameObject.h"
 #include "BaseButton.h"
 #include "BaseTextField.h"
+#include "Direct2DBitmap.h"
+#include "GraphicRessourceManager.h"
 namespace Application 
 {
 
@@ -23,13 +25,17 @@ namespace Application
       void Update();
       void Draw(IGraphics2D* graphics);
       virtual void LMouse(int x, int y) override;
-
+      virtual void Shutdown() override;
     private:
       List* list;
       ListUI* Uilist;
 
       // Inherited via IScene
       
+
+      // Inherited via IScene
+      
+
     };
 
 

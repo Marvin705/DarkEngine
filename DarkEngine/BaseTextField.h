@@ -37,6 +37,10 @@ namespace Application
 
       virtual bool IsSelected() override;
 
+
+      // Inherited via IUIElement
+      virtual void Dispose() override;
+
     };
 
   }

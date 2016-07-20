@@ -23,6 +23,7 @@ namespace Application
     private:
       de_int32 itemcount;
       ListEntry* first;
+      ListEntry* last;
     };
 
 
